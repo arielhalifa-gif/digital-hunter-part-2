@@ -1,4 +1,5 @@
 from mysql_connector_config import Mysql
+from DigitalHunter_map import plot_map_with_geometry
 
 
 class Queries:
@@ -64,3 +65,15 @@ class Queries:
         cursor.close()
         cnx.close()
         return rows
+    
+
+    def query_5_visualization(identity_id):
+        cnx = Mysql.get_mysql_connection()
+        cursor = cnx.cursor()
+        # first lets find the lat and lon for the target we are looking for
+        query = '''SELECT initial_lat, initial_lon, last_known_lat, last_known_lon FROM targets
+                    WHERE identity_id = %s'''
+        cursor.execute(query, identity_id)
+        for (initial_lat, initial_lon, last_known_lat, last_known_lon) in cursor:
+            target_points = [(initial_lat, initial_lon), (last_known_lat, last_known_lon)]
+        plot_map_with_geometry(target_points)
