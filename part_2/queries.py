@@ -77,3 +77,12 @@ class Queries:
         for (initial_lat, initial_lon, last_known_lat, last_known_lon) in cursor:
             target_points = [(initial_lat, initial_lon), (last_known_lat, last_known_lon)]
         plot_map_with_geometry(target_points)
+
+
+
+    def query_6_bonus():
+        cnx = Mysql.get_mysql_connection()
+        cursor = cnx.cursor()
+        # join intel_signals, attacks and damage_assessments
+        # attacked but no destroyed
+        query = ''''''
