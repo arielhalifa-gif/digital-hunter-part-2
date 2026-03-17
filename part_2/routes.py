@@ -29,6 +29,10 @@ def waking_up():
     return response
 
 
+@app.get("/q5/{entity_id}")
+def visualization(entity_id):
+    Queries.query_5_visualization(entity_id)
+
 
 
 if __name__ == "__routes__":
